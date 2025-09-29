@@ -26,7 +26,8 @@
                 <!-- Titulo Proyecto -->
                 <TextBlock Text="{Binding Greeting}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Margin="10,20,10,10"/>
+                           Margin="10,20,10,10"
+                           FontFamily="KG Summer Sunshine Shadow"/>
                 <!-- Titulo del Album -->
                 <TextBlock Text="Titulo del Album: " Width="260"
                            HorizontalAlignment="Center"/>
@@ -57,12 +58,13 @@
                 <!-- Cantidad de Albums -->
                 <TextBlock Text="Cantidad: " Width="260"
                            HorizontalAlignment="Center"/>
-                <NumericUpDown Text="{Binding Album.cantidad}" 
+                <NumericUpDown Value="{Binding Album.cantidad}" 
                                Width="260"
                                HorizontalAlignment="Center" 
                                Margin="0,5,0,10"/>
                 <!-- Check Opciones Avanzadas -->
                 <CheckBox Content="Opciones Avanzadas"
+                          Name="check"
                           HorizontalAlignment="Center"
                           Margin="0,0,0,5"
                           Command="{Binding MostarOpcionAvanzadoCommand}"/>
@@ -71,18 +73,20 @@
                     <TextBlock Text="Formato del Álbum: "
                                HorizontalAlignment="Center"
                                Margin="0,0,0,5"/>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Content="Vinilo"
-                                  Margin="0,0,5,5"/>
-                        <CheckBox Content="CD/DVD"
-                                  Margin="0,0,5,5"/>
-                        <CheckBox Content="Cassette"
-                                  Margin="0,0,5,5"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="(Vinilo / CD-DVD / Cassette): " Width="260"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+                        <ComboBox SelectedItem="{Binding Album.formato}"
+                                  ItemsSource="{Binding FormatAlbum}"
+                                 Width="260"
+                                 HorizontalAlignment="Center"
+                                 Margin="0,5,0,5"/>
                     </StackPanel>
                 </StackPanel>
                 <!-- Texto al generar un error -->
                 <TextBlock Width="220"
-                           Margin="0,0,0,10"
+                           Margin="0,0,0,5"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            Text="{Binding Mensaje}"/>
@@ -91,7 +95,8 @@
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
                         IsVisible="{Binding ModoCrear}"
-                        Command="{Binding CrearAlbumCommand}"/>
+                        Command="{Binding CrearAlbumCommand}"
+                        CommandParameter="{Binding ElementName=check}"/>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center">
                     <Button Content="Editar Álbum" Width="130"
@@ -112,12 +117,35 @@
         <!-- Inicio Lista -->
         <StackPanel>
             <ComboBox ItemsSource="{Binding Albunes}"/>
-            <ListBox ItemsSource="{Binding Albunes}">
+            <ListBox ItemsSource="{Binding Albunes}"
+                     Height="350"
+                     Width="450"
+                     HorizontalAlignment="Center">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black"
+                                >
+                            <StackPanel>
+                                <Image Source="avares://Proyecto_GuitarSongs/Assets/vinilo.png"/>
+                                <TextBox Text="{Binding titulo}"
+                                         HorizontalAlignment="Center"/>
+                                <TextBox Text="{Binding creador}"
+                                         HorizontalAlignment="Center"/>
+                                <TextBox Text="{Binding fechaSalida}"
+                                         HorizontalAlignment="Center"/>
+                                <TextBox Text="{Binding cantidad}"
+                                         HorizontalAlignment="Center"/>
+                                <TextBox Text="{Binding formato}"
+                                         HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
             </ListBox>
         </StackPanel>
         <!-- Fin Lista -->

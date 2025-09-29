@@ -28,8 +28,22 @@ public partial class MainWindowViewModel : ViewModelBase
     private List<Album> albunes = new();
 
 
+    public MainWindowViewModel()
+    {
+        CargarFormato();
+    }
+    
+    // Indicar el tipo de formato del Album
+    public List<string> FormatAlbum { set; get; }
+    
+    private void CargarFormato()
+    {
+        FormatAlbum = new List<string>()
+        {
+            "Vinilo","CD/DVD","Cassette"
+        };
+    }
 
-    // Saber si el formato es seleccionado o no (por defecto CD/DVD)
     [RelayCommand]
     public void Mostrar_Opc_Avanzadas(object parameter)
     {
@@ -78,8 +92,9 @@ public partial class MainWindowViewModel : ViewModelBase
     
     // Metodo de crear y comprobar cada elemento
     [RelayCommand]
-    public void CrearAlbum()
+    public void CrearAlbum(object parameter)
     {
+        CheckBox opcion = (CheckBox)parameter;
         if (string.IsNullOrWhiteSpace(Album.titulo))
         {
             Mensaje = "Titulo incorrecto";
@@ -92,9 +107,13 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             Mensaje = "Fecha incorrecta";
         }
-        else if (int.IsNegative(Album.cantidad))
+        else if (int.IsNegative(Album.cantidad) || Album.cantidad == 0)
         {
             Mensaje = "Cantidad incorrecta";
+        }
+        else if (opcion.IsChecked == false)
+        {
+            Mensaje = "Comprobar Opc.Avanzadas";
         }
         else
         {
