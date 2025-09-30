@@ -74,9 +74,6 @@
                                HorizontalAlignment="Center"
                                Margin="0,0,0,5"/>
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="(Vinilo / CD-DVD / Cassette): " Width="260"
-                                   HorizontalAlignment="Center"
-                                   TextAlignment="Center"/>
                         <ComboBox SelectedItem="{Binding Album.formato}"
                                   ItemsSource="{Binding FormatAlbum}"
                                  Width="260"
@@ -86,7 +83,7 @@
                 </StackPanel>
                 <!-- Texto al generar un error -->
                 <TextBlock Width="220"
-                           Margin="0,0,0,5"
+                           Margin="0,0,0,10"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            Text="{Binding Mensaje}"/>
@@ -129,9 +126,10 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black"
-                                >
+                                Padding="10">
                             <StackPanel>
-                                <Image Source="avares://Proyecto_GuitarSongs/Assets/vinilo.png"/>
+                                <Image Source="avares://Proyecto_GuitarSongs/Assets/vinilo.png"
+                                       Width="50"/>
                                 <TextBox Text="{Binding titulo}"
                                          HorizontalAlignment="Center"/>
                                 <TextBox Text="{Binding creador}"

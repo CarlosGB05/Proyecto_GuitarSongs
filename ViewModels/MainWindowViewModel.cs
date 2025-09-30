@@ -34,7 +34,7 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     
     // Indicar el tipo de formato del Album
-    public List<string> FormatAlbum { set; get; }
+    public List<string> FormatAlbum { set; get; } 
     
     private void CargarFormato()
     {
