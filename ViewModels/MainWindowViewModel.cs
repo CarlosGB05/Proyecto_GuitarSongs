@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Mime;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -25,12 +26,13 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool modoEditar = false;
     
     [ObservableProperty]
-    private List<Album> albunes = new();
+    private ObservableCollection<Album> albunes = new();
 
 
     public MainWindowViewModel()
     {
         CargarFormato();
+        CargarAlbumes();
     }
     
     // Indicar el tipo de formato del Album
@@ -120,6 +122,16 @@ public partial class MainWindowViewModel : ViewModelBase
             Albunes.Add(Album);
             Mensaje = "Album Creado";
         }
+    }
+
+    private void CargarAlbumes()
+    {
+        Album album = new Album();
+        album.titulo = "Back in Black";
+        album.creador = "AC/DC";
+        album.formato = "Vinilo";
+        album.fechaSalida = DateTime.Today;
+        Albunes.Add(album);
     }
 
 

@@ -126,20 +126,26 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Black"
+                                BorderThickness="5"
+                                CornerRadius="100"
                                 Padding="10">
-                            <StackPanel>
+                            <StackPanel Width="180"
+                                        Height="180">
                                 <Image Source="avares://Proyecto_GuitarSongs/Assets/vinilo.png"
-                                       Width="50"/>
-                                <TextBox Text="{Binding titulo}"
+                                       Width="50"
+                                       Margin="5"/>
+                                <TextBlock Text="{Binding titulo}"
                                          HorizontalAlignment="Center"/>
-                                <TextBox Text="{Binding creador}"
-                                         HorizontalAlignment="Center"/>
-                                <TextBox Text="{Binding fechaSalida}"
-                                         HorizontalAlignment="Center"/>
-                                <TextBox Text="{Binding cantidad}"
-                                         HorizontalAlignment="Center"/>
-                                <TextBox Text="{Binding formato}"
-                                         HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding creador}"
+                                           HorizontalAlignment="Center"
+                                           Margin="5"/>
+                                <TextBlock Text="{Binding fechaSalida}"
+                                           HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding cantidad}"
+                                           HorizontalAlignment="Center"
+                                           Margin="5"/>
+                                <TextBlock Text="{Binding formato}"
+                                           HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
