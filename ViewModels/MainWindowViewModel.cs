@@ -15,6 +15,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [ObservableProperty]
     private Album album = new();
+
+    [ObservableProperty] 
+    private Album albumselec = new();
     
     [ObservableProperty]
     private string mensaje = string.Empty;
@@ -74,12 +77,6 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     
     // Comprobar que la fecha sea desde hoy a futuro
-    [RelayCommand]
-    public void ComprobarFecha()
-    {
-        
-    }
-    
     private bool CheckDate()
     {
         if (Album.fechaSalida < DateTime.Today)
@@ -133,6 +130,58 @@ public partial class MainWindowViewModel : ViewModelBase
         album.fechaSalida = DateTime.Today;
         Albunes.Add(album);
     }
+    
+    // Cargar el Album seleccionado y editarlo
+    [RelayCommand]
+    public void CargarAlbumSelec()
+    {
+        Album = Albumselec;
+        ModoEditar = true;
+        ModoCrear = false;
+    }
+    
+    // Cancelar de editar el Album
+    [RelayCommand]
+    public void CancelarEditar()
+    {
+        Album = new();
+        ModoEditar = false;
+        ModoCrear = true;
+    }
+    
+    // Editar el Album seleccionado
+    [RelayCommand]
+    public void EditarAlbum(object parameter)
+    {
+        CheckBox opcion = (CheckBox)parameter;
+        if (string.IsNullOrWhiteSpace(Album.titulo))
+        {
+            Mensaje = "Titulo incorrecto";
+        }
+        else if (string.IsNullOrWhiteSpace(Album.creador))
+        {
+            Mensaje = "Creador incorrecto";
+        }
+        else if (!CheckDate())
+        {
+            Mensaje = "Fecha incorrecta";
+        }
+        else if (int.IsNegative(Album.cantidad) || Album.cantidad == 0)
+        {
+            Mensaje = "Cantidad incorrecta";
+        }
+        else if (opcion.IsChecked == false)
+        {
+            Mensaje = "Comprobar Opc.Avanzadas";
+        }
+        else
+        {
+            Mensaje = "Album Editado";
+            ModoCrear = true;
+            ModoEditar = false;
+        }
+    }
+    
 
 
 

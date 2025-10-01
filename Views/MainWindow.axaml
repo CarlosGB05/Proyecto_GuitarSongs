@@ -3,7 +3,7 @@
         xmlns:vm="using:Proyecto_GuitarSongs.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="550"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
         x:Class="Proyecto_GuitarSongs.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -27,7 +27,7 @@
                 <TextBlock Text="{Binding Greeting}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            Margin="10,20,10,10"
-                           FontFamily="KG Summer Sunshine Shadow"/>
+                           FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/Tendang.ttf"/>
                 <!-- Titulo del Album -->
                 <TextBlock Text="Titulo del Album: " Width="260"
                            HorizontalAlignment="Center"/>
@@ -49,11 +49,11 @@
                                     Width="260"
                                     SelectedDate="{Binding Album.fechaSalida}"
                                     Margin="0,5,0,10">
-                    <Interaction.Behaviors>
+                    <!-- Interaction.Behaviors>
                         <EventTriggerBehavior EventName="SelectedDateChanged">
                             <InvokeCommandAction Command="{Binding ComprobarFechaCommand}"/>
                         </EventTriggerBehavior>
-                    </Interaction.Behaviors>
+                    </Interaction.Behaviors -->
                 </CalendarDatePicker>
                 <!-- Cantidad de Albums -->
                 <TextBlock Text="Cantidad: " Width="260"
@@ -100,12 +100,15 @@
                             HorizontalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             Margin="5,5,5,10"
-                            IsVisible="{Binding ModoEditar}"/>
+                            IsVisible="{Binding ModoEditar}"
+                            Command="{Binding EditarAlbumCommand}"
+                            CommandParameter="{Binding ElementName=check}"/>
                     <Button Content="Cancelar" Width="130"
                             HorizontalAlignment="Center"
                             HorizontalContentAlignment="Center"
                             Margin="5,5,5,10"
-                            IsVisible="{Binding ModoEditar}"/>
+                            IsVisible="{Binding ModoEditar}"
+                            Command="{Binding CancelarEditarCommand}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -113,11 +116,17 @@
         
         <!-- Inicio Lista -->
         <StackPanel>
-            <ComboBox ItemsSource="{Binding Albunes}"/>
+            <!-- ComboBox ItemsSource="{Binding Albunes}"/ -->
             <ListBox ItemsSource="{Binding Albunes}"
-                     Height="350"
-                     Width="450"
-                     HorizontalAlignment="Center">
+                     HorizontalAlignment="Center"
+                     Width="400"
+                     SelectedItem="{Binding Albumselec}">
+                <Interaction.Behaviors>
+                    <EventTriggerBehavior EventName="DoubleTapped">
+                        <InvokeCommandAction 
+                            Command="{Binding CargarAlbumSelecCommand}"/>
+                    </EventTriggerBehavior>
+                </Interaction.Behaviors>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -135,7 +144,8 @@
                                        Width="50"
                                        Margin="5"/>
                                 <TextBlock Text="{Binding titulo}"
-                                         HorizontalAlignment="Center"/>
+                                         HorizontalAlignment="Center"
+                                         />
                                 <TextBlock Text="{Binding creador}"
                                            HorizontalAlignment="Center"
                                            Margin="5"/>
