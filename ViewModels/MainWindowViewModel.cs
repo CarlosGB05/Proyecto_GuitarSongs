@@ -11,7 +11,7 @@ namespace Proyecto_GuitarSongs.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    public string Greeting { get; } = "Guitar Song´s";
+    public string Greeting { get; } = "Guitar Songs";
 
     [ObservableProperty]
     private Album album = new();
