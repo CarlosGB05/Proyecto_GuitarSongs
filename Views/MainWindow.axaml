@@ -15,20 +15,21 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <UniformGrid Columns="2">
+    <UniformGrid Columns="2" Background="Black">
         <!-- Inicio Formulario -->
         <Border BorderBrush="Black"
                 BorderThickness="7"
                 CornerRadius="20"
                 Padding="5"
-                Margin="10">
-            <StackPanel Background="Red">
+                Margin="10"
+                Background="Red">
+            <StackPanel>
                 <!-- Titulo Proyecto -->
                 <TextBlock Text="{Binding Greeting}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Margin="10,20,10,10"
+                           Margin="10,40,10,30"
                            FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
-                           FontSize="50"
+                           FontSize="70"
                            Foreground="Black"/>
                 <!-- Titulo del Album -->
                 <TextBlock Text="Titulo del Album: " Width="260"
@@ -53,7 +54,7 @@
                          HorizontalAlignment="Center"
                          Margin="0,5,0,10"
                          FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/Tendang.ttf#tendang"
-                         Foreground=" Black"/>
+                         />
                 <!-- Fecha Salida del Album -->
                 <TextBlock Text="Fecha Salida: " Width="260"
                            HorizontalAlignment="Center"
@@ -83,7 +84,7 @@
                                HorizontalAlignment="Center" 
                                Margin="0,5,0,10"
                                FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/Tendang.ttf#tendang"
-                               Foreground="Red"/>
+                               Foreground="Black"/>
                 <!-- Check Opciones Avanzadas -->
                 <CheckBox Content="Opciones Avanzadas"
                           Name="check"
@@ -162,10 +163,17 @@
         <!-- Inicio Lista -->
         <StackPanel>
             <!-- ComboBox ItemsSource="{Binding Albunes}"/ -->
+            <!-- Titulo Proyecto -->
+            <TextBlock Text="Mis Álbumes" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Margin="10,40,10,30"
+                       FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
+                       FontSize="70"
+                       Foreground="White"/>
             <ListBox ItemsSource="{Binding Albunes}"
-                     HorizontalAlignment="Center"
-                     Width="400"
-                     SelectedItem="{Binding Albumselec}">
+                     SelectedItem="{Binding Albumselec}"
+                     Background="Black"
+                     Margin="0,10,0,0">
                 <Interaction.Behaviors>
                     <EventTriggerBehavior EventName="DoubleTapped">
                         <InvokeCommandAction 
@@ -179,16 +187,16 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black"
+                        <Border BorderBrush="White"
                                 BorderThickness="5"
                                 CornerRadius="100"
                                 Padding="10"
                                 Background="Black">
                             <StackPanel Width="180"
                                         Height="180">
-                                <Image Source="avares://Proyecto_GuitarSongs/Assets/vinilo.png"
-                                       Width="50"
-                                       Margin="5"/>
+                                <Image Source="avares://Proyecto_GuitarSongs/Assets/cd.png"
+                                       Width="60"
+                                       Margin="5,0,5,5"/>
                                 <TextBlock Text="{Binding titulo}"
                                          HorizontalAlignment="Center"
                                          FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/Tendang.ttf#tendang"

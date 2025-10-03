@@ -117,6 +117,7 @@ public partial class MainWindowViewModel : ViewModelBase
         else
         {
             Albunes.Add(Album);
+            Album = new();
             Mensaje = "Album Creado";
         }
     }
