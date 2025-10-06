@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Mime;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Proyecto_GuitarSongs.Models;
@@ -30,6 +31,12 @@ public partial class MainWindowViewModel : ViewModelBase
     
     [ObservableProperty]
     private ObservableCollection<Album> albunes = new();
+
+    [ObservableProperty] 
+    private bool botonAlbumes = false;
+
+    [ObservableProperty] 
+    private int columnas;
 
 
     public MainWindowViewModel()
@@ -183,6 +190,33 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
     
+    // Ver los albumes creados
+    [RelayCommand]
+    public void ColumnasProyecto()
+    {
+        if (BotonAlbumes == false)
+        {
+            Columnas = 1;
+        }
+
+        if (BotonAlbumes)
+        {
+            Columnas = 2;
+        }
+    }
+
+    [RelayCommand]
+    public void VerAlbumes()
+    {
+        BotonAlbumes = true;
+    }
+    
+    // Dejar ver Albumes
+    [RelayCommand]
+    public void DejarVerAlbumes()
+    {
+        BotonAlbumes = false;
+    }
 
 
 

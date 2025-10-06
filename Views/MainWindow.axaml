@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
+        Width="1200" Height="760"
         x:Class="Proyecto_GuitarSongs.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -15,7 +16,8 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <UniformGrid Columns="2" Background="Black">
+    <UniformGrid Columns="{Binding ColumnasProyectoCommand}" 
+                 Background="Black">
         <!-- Inicio Formulario -->
         <Border BorderBrush="Black"
                 BorderThickness="7"
@@ -118,8 +120,8 @@
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            Text="{Binding Mensaje}"
-                           Foreground="Red"
-                           FontSize="15"
+                           Foreground="Black"
+                           FontSize="20"
                            FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/Tendang.ttf#tendang"/>
                 <!-- Botones Aceptar, Editar y Cancelar -->
                 <Button Content="Crear Álbum" Width="130"
@@ -129,7 +131,7 @@
                         Command="{Binding CrearAlbumCommand}"
                         CommandParameter="{Binding ElementName=check}"
                         FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
-                        FontSize="18"
+                        FontSize="17"
                         Foreground="White"
                         Background="Black"/>
                 <StackPanel Orientation="Horizontal"
@@ -156,24 +158,42 @@
                             Foreground="White"
                             Background="Black"/>
                 </StackPanel>
+                <!-- Boton ver albumes creados -->
+                <Button Content="Ver Álbumes" Width="130"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        IsVisible="{Binding ModoCrear}"
+                        Command="{Binding VerAlbumesCommand}"
+                        FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
+                        FontSize="17"
+                        Foreground="White"
+                        Background="Black"
+                        Margin="0,30,0,0"/>
             </StackPanel>
         </Border>
         <!-- Fin Formulario-->
         
         <!-- Inicio Lista -->
-        <StackPanel>
+        <Border Background="White"
+                BorderBrush="Black"
+                BorderThickness="7"
+                CornerRadius="20"
+                Margin="10"
+                IsVisible="{Binding BotonAlbumes}">
+            <StackPanel>
             <!-- ComboBox ItemsSource="{Binding Albunes}"/ -->
             <!-- Titulo Proyecto -->
             <TextBlock Text="Mis Álbumes" 
                        HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Margin="10,40,10,30"
+                       Margin="10,40,10,0"
                        FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
                        FontSize="70"
-                       Foreground="White"/>
+                       Foreground="Black"/>
             <ListBox ItemsSource="{Binding Albunes}"
                      SelectedItem="{Binding Albumselec}"
-                     Background="Black"
-                     Margin="0,10,0,0">
+                     Background="White"
+                     Margin="0,10,0,0"
+                     HorizontalAlignment="Center">
                 <Interaction.Behaviors>
                     <EventTriggerBehavior EventName="DoubleTapped">
                         <InvokeCommandAction 
@@ -224,7 +244,19 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ListBox>
+            <!-- Dejar ver albumes-->
+            <Button Content="Dejar Ver Álbumes" Width="130"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    IsVisible="{Binding ModoCrear}"
+                    Command="{Binding DejarVerAlbumesCommand}"
+                    FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
+                    FontSize="17"
+                    Foreground="Black"
+                    Background="White"
+                    Margin="0,30,0,0"/>
         </StackPanel>
+        </Border>
         <!-- Fin Lista -->
     </UniformGrid>
 
