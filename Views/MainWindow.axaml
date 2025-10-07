@@ -16,16 +16,21 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <UniformGrid Columns="{Binding ColumnasProyectoCommand}" 
-                 Background="Black">
+    <UniformGrid Columns="{Binding ColumnasProyectoCommand}"
+                 HorizontalAlignment="Center">
         <!-- Inicio Formulario -->
         <Border BorderBrush="Black"
                 BorderThickness="7"
                 CornerRadius="20"
                 Padding="5"
                 Margin="10"
-                Background="Red">
+                Background="Red"
+                HorizontalAlignment="Center">
             <StackPanel>
+                <StackPanel.Background>
+                    <ImageBrush Source="avares://Proyecto_GuitarSongs/Assets/fondo.png"
+                                Stretch="Fill"/>
+                </StackPanel.Background>
                 <!-- Titulo Proyecto -->
                 <TextBlock Text="{Binding Greeting}" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"

@@ -209,6 +209,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void VerAlbumes()
     {
         BotonAlbumes = true;
+        Columnas = 2;
     }
     
     // Dejar ver Albumes
