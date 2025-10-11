@@ -3,12 +3,13 @@
         xmlns:vm="using:Proyecto_GuitarSongs.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="760"
         Width="1200" Height="760"
         x:Class="Proyecto_GuitarSongs.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Proyecto_GuitarSongs">
+        Title="Proyecto_GuitarSongs"
+        Background="Black">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -16,28 +17,27 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <UniformGrid Columns="{Binding ColumnasProyectoCommand}"
+    <UniformGrid Columns="{Binding Columnas}"
                  HorizontalAlignment="Center">
         <!-- Inicio Formulario -->
-        <Border BorderBrush="Black"
+        <Border BorderBrush="White"
                 BorderThickness="7"
                 CornerRadius="20"
                 Padding="5"
                 Margin="10"
-                Background="Red"
-                HorizontalAlignment="Center">
+                Background="MediumPurple">
             <StackPanel>
                 <StackPanel.Background>
-                    <ImageBrush Source="avares://Proyecto_GuitarSongs/Assets/fondo.png"
+                    <ImageBrush Source="avares://Proyecto_GuitarSongs/Assets/fondo2.png"
                                 Stretch="Fill"/>
                 </StackPanel.Background>
                 <!-- Titulo Proyecto -->
                 <TextBlock Text="{Binding Greeting}" 
-                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
                            Margin="10,40,10,30"
                            FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
                            FontSize="70"
-                           Foreground="Black"/>
+                           Foreground="White"/>
                 <!-- Titulo del Album -->
                 <TextBlock Text="Titulo del Album: " Width="260"
                            HorizontalAlignment="Center"
@@ -125,7 +125,7 @@
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
                            Text="{Binding Mensaje}"
-                           Foreground="Black"
+                           Foreground="White"
                            FontSize="20"
                            FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/Tendang.ttf#tendang"/>
                 <!-- Botones Aceptar, Editar y Cancelar -->
@@ -167,8 +167,8 @@
                 <Button Content="Ver Álbumes" Width="130"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center"
-                        IsVisible="{Binding ModoCrear}"
                         Command="{Binding VerAlbumesCommand}"
+                        IsVisible="{Binding MostrarBotonAlbumesCommand}"
                         FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
                         FontSize="17"
                         Foreground="White"
@@ -180,7 +180,7 @@
         
         <!-- Inicio Lista -->
         <Border Background="White"
-                BorderBrush="Black"
+                BorderBrush="MediumPurple"
                 BorderThickness="7"
                 CornerRadius="20"
                 Margin="10"
@@ -198,7 +198,8 @@
                      SelectedItem="{Binding Albumselec}"
                      Background="White"
                      Margin="0,10,0,0"
-                     HorizontalAlignment="Center">
+                     HorizontalAlignment="Center"
+                     Width="470" Height="500">
                 <Interaction.Behaviors>
                     <EventTriggerBehavior EventName="DoubleTapped">
                         <InvokeCommandAction 
@@ -250,15 +251,14 @@
                 </ItemsControl.ItemTemplate>
             </ListBox>
             <!-- Dejar ver albumes-->
-            <Button Content="Dejar Ver Álbumes" Width="130"
+            <Button Content="Cancelar Vista" Width="150"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center"
-                    IsVisible="{Binding ModoCrear}"
                     Command="{Binding DejarVerAlbumesCommand}"
                     FontFamily="avares://Proyecto_GuitarSongs/Assets/FuenteLetras/CAMPUS.ttf#campus"
                     FontSize="17"
                     Foreground="Black"
-                    Background="White"
+                    Background="MediumPurple"
                     Margin="0,30,0,0"/>
         </StackPanel>
         </Border>

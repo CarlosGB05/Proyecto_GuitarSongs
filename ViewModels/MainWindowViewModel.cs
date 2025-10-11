@@ -36,7 +36,10 @@ public partial class MainWindowViewModel : ViewModelBase
     private bool botonAlbumes = false;
 
     [ObservableProperty] 
-    private int columnas;
+    private bool vistaBoton;
+    
+    [ObservableProperty] 
+    private int columnas = 1;
 
 
     public MainWindowViewModel()
@@ -191,17 +194,17 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     
     // Ver los albumes creados
+    
     [RelayCommand]
     public void ColumnasProyecto()
     {
-        if (BotonAlbumes == false)
-        {
-            Columnas = 1;
-        }
-
-        if (BotonAlbumes)
+        if (BotonAlbumes == true)
         {
             Columnas = 2;
+        }
+        else
+        {
+            Columnas = 1;
         }
     }
 
@@ -217,15 +220,21 @@ public partial class MainWindowViewModel : ViewModelBase
     public void DejarVerAlbumes()
     {
         BotonAlbumes = false;
+        Columnas = 1;
     }
 
-
-
-
-
-
-
-
+    [RelayCommand]
+    public void MostrarBotonAlbumes()
+    {
+        if (Columnas == 1)
+        {
+            VistaBoton = true;
+        }
+        if (Columnas == 2)
+        {
+            VistaBoton = false;
+        }
+    }
 
 
 }
